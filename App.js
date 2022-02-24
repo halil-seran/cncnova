@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Button, Text, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -10,6 +10,12 @@ import { DetailScreen } from "./navigations/DetailScreen";
 import { HomeScreen } from "./navigations/HomeScreen";
 import { SettingsScreen } from "./navigations/SettingsScreen";
 import { FilterScreen } from "./navigations/FilterScreen";
+
+const TAB_ICON = {
+  Home: "md-home", // this is the name of root that we define
+  Filters: "ios-filter-sharp",
+  Profile: "ios-person-sharp",
+};
 
 const HomeStack = createNativeStackNavigator();
 
@@ -45,27 +51,15 @@ function SettingsStackScreen() {
 
 const Tab = createBottomTabNavigator();
 
-const createScreenOptions = () => {
+const createScreenOptions = ({ route }) => {
+  const iconName = TAB_ICON[route.name];
   return {
+    tabBarIcon: ({ size, color }) => (
+      <Ionicons name={iconName} size={30} color={color} />
+    ),
+    tabBarActiveTintColor: "red",
+    tabBarInactiveTintColor: "black",
     headerShown: false, //with this, header is not showing
-    Home: {
-      screen: HomeStackScreen,
-      navigationOptions: {
-        tabBarLabel: "Home",
-        tabBarOptions: {
-          activeTintColor: "#006600",
-        },
-        tabBarIcon: (tabInfo) => {
-          return (
-            <Ionicons
-              name="md-home"
-              size={24}
-              color={tabInfo.focused ? "#006600" : "#8e8e93"}
-            />
-          );
-        },
-      },
-    },
   };
 };
 
