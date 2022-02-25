@@ -6,16 +6,15 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { DetailScreen } from "./navigations/DetailScreen";
-import { HomeScreen } from "./navigations/HomeScreen";
-import { SettingsScreen } from "./navigations/SettingsScreen";
-import { FilterScreen } from "./navigations/FilterScreen";
+import { DetailScreen } from "./src/Screens/HomeScreen/DetailScreen";
+import { HomeScreen } from "./src/Screens/HomeScreen/HomeScreen";
+import { SettingsScreen } from "./src/Screens/ProfileScreen/ProfileScreen";
+import { FilterScreen } from "./src/Screens/FilterScreen/FilterScreen";
 
-const TAB_ICON = {
-  Home: "md-home", // this is the name of root that we define
-  Filters: "ios-filter-sharp",
-  Profile: "ios-person-sharp",
-};
+import { Navigation } from "./src/navigation";
+
+/*
+
 
 const HomeStack = createNativeStackNavigator();
 
@@ -49,28 +48,13 @@ function SettingsStackScreen() {
   );
 }
 
-const Tab = createBottomTabNavigator();
 
-const createScreenOptions = ({ route }) => {
-  const iconName = TAB_ICON[route.name];
-  return {
-    tabBarIcon: ({ size, color }) => (
-      <Ionicons name={iconName} size={30} color={color} />
-    ),
-    tabBarActiveTintColor: "red",
-    tabBarInactiveTintColor: "black",
-    headerShown: false, //with this, header is not showing
-  };
-};
+*/
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={createScreenOptions}>
-        <Tab.Screen name="Home" component={HomeStackScreen} />
-        <Tab.Screen name="Filters" component={FilterStackScreen} />
-        <Tab.Screen name="Profile" component={SettingsStackScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+   <>
+   <Navigation />
+   </>
   );
 }
