@@ -17,7 +17,7 @@ const createScreenOptions = () => {
 
 export const AuthNavigator = () => (
   <Stack.Navigator screenOptions={createScreenOptions}>
-    <Stack.Screen name="Main" component={AuthScreen} />
-    <Stack.Screen name="Register" component={RegisterScreen} />
+    <Stack.Screen name="MainScreen" component={AuthScreen} />
+    <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
   </Stack.Navigator>
 );
