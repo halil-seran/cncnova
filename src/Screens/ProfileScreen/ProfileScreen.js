@@ -43,7 +43,6 @@ export function ProfileScreen({ navigation }) {
         </AvatarContainer>
       </View>
       <View style={styles.listArea}>
-        <Text>Profile screen</Text>
         <List.Item
           title="my products"
           description="you can add your products here"

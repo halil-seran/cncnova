@@ -81,12 +81,13 @@ export const MyProductScreen = ({ navigation }) => {
         </Card>
       </View>
 
-      <View style={{ flex: 1 }}>
-        <Text>My Products Screen HERE !!</Text>
-        <Button
-          title="Add Product"
+      <View style={styles.addProductButtonContainer}>
+        <TouchableOpacity
+          style={styles.addProductButton}
           onPress={() => navigation.navigate("AddProductScreen")}
-        />
+        >
+          <Text> + ADD PRODUCT</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -106,9 +107,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   cardStyles: {
-    backgroundColor: "#eae2b7",
+    backgroundColor: "#f4ece2",
     marginTop: 35,
-    marginBottom:-10,
+    marginBottom: -10,
     width: "90%",
     height: "20%",
     flexDirection: "row",
@@ -130,5 +131,19 @@ const styles = StyleSheet.create({
     margin: 2,
     borderBottomRightRadius: 25,
     borderRadius: 5,
+  },
+  addProductButtonContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  addProductButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ffbd00",
+    flexDirection: "row",
+    width: "60%",
+    height: "50%",
+    borderRadius:25
   },
 });
