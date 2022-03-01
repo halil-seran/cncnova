@@ -7,7 +7,7 @@ import { AuthNavigator } from "./AuthNavigator";
 export const Navigation = () => {
   return (
     <NavigationContainer>
-     <AppNavigator />
+      <AuthNavigator />
     </NavigationContainer>
   );
 };

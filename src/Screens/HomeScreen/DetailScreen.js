@@ -32,13 +32,13 @@ export const DetailScreen = ({ navigation }) => {
   return (
     <View style={styles.screen}>
       <View style={{ flex: 9 }}>
-        <View style={{ flexDirection: "row",flex: 0.4 }}>
-          <View style={{ flex: 1 }}>
+        <View style={{ flexDirection: "row", flex: 0.4 }}>
+          <View style={styles.buttonContainer}>
             <TouchableOpacity
               onPress={changeImage}
               style={styles.changeImageButton}
             >
-              <Text style={{ color: "black", fontSize:60 }}> << </Text>
+              <Text style={{ color: "black", fontSize: 30 }}> ᐸ </Text>
             </TouchableOpacity>
           </View>
           <Image
@@ -47,16 +47,23 @@ export const DetailScreen = ({ navigation }) => {
               uri: `${image}`,
             }}
           />
-          <View style={{ flex: 1 }}>
+          <View style={styles.buttonContainer}>
             <TouchableOpacity
               onPress={changeImage}
               style={styles.changeImageButton}
             >
-              <Text style={{ color: "black",fontSize:60 }}> >> </Text>
+              <Text style={{ color: "black", fontSize: 30 }}> ᐳ </Text>
             </TouchableOpacity>
           </View>
         </View>
-        <Text>urunun adi</Text>
+        <View style={styles.textContainer}>
+          <Text>urunun adi</Text>
+          <Text>urunun fiyati</Text>
+        </View>
+        <View style={styles.textContainer2}>
+          <Text>urunun Ozellikleri</Text>
+          <Text>urunun detaylari</Text>
+        </View>
       </View>
       <View style={styles.centeredView}>
         <Modal
@@ -149,5 +156,21 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  buttonContainer: {
+    width:30,
+    height:270,
+    backgroundColor: "#d4f9c3",
+  },
+  textContainer: {
+    padding: 10,
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  textContainer2: {
+    flex: 0.2,
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 10,
   },
 });

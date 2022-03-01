@@ -7,7 +7,7 @@ export const AuthScreen = ({ navigation }) => {
             <Text>
                 Auth Screen HERE
             </Text>
-            <Button title="Register" onPress={() => navigation.navigate('Register')} />
+            <Button title="Register" onPress={() => navigation.navigate('RegisterScreen')} />
         </View>
     )
 };
