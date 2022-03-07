@@ -1,61 +1,33 @@
 import * as React from "react";
 import { Button, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import { DetailScreen } from "./src/Screens/HomeScreen/DetailScreen";
-import { HomeScreen } from "./src/Screens/HomeScreen/HomeScreen";
-import { SettingsScreen } from "./src/Screens/ProfileScreen/ProfileScreen";
-import { FilterScreen } from "./src/Screens/FilterScreen/FilterScreen";
+import * as firebase from "firebase";
+import { initializeApp } from "firebase/app";
 
 import { Navigation } from "./src/navigation";
 
-/*
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
 
-const HomeStack = createNativeStackNavigator();
+const firebaseConfig = {
+  apiKey: "AIzaSyDBUxcfTkTUmAKOOCXyx-b22VXfNwa1HtA",
+  authDomain: "cncnova-77105.firebaseapp.com",
+  projectId: "cncnova-77105",
+  storageBucket: "cncnova-77105.appspot.com",
+  messagingSenderId: "775031094581",
+  appId: "1:775031094581:web:a01d1ee84157ec8a18a07c"
+};
 
-function HomeStackScreen() {
-  return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen name="Home1" component={HomeScreen} />
-      <HomeStack.Screen name="Details1" component={DetailScreen} />
-    </HomeStack.Navigator>
-  );
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig);
 }
-
-const FilterStack = createNativeStackNavigator();
-
-function FilterStackScreen() {
-  return (
-    <FilterStack.Navigator>
-      <FilterStack.Screen name="Filter" component={FilterScreen} />
-    </FilterStack.Navigator>
-  );
-}
-
-const SettingsStack = createNativeStackNavigator();
-
-function SettingsStackScreen() {
-  return (
-    <SettingsStack.Navigator>
-      <SettingsStack.Screen name="Settings1" component={SettingsScreen} />
-      <SettingsStack.Screen name="Details" component={DetailScreen} />
-    </SettingsStack.Navigator>
-  );
-}
-
-
-*/
 
 export default function App() {
   return (
-   <>
-   <Navigation />
-   </>
+    <>
+      <AuthenticationContextProvider>
+        <Navigation />
+      </AuthenticationContextProvider>
+    </>
   );
 }
-

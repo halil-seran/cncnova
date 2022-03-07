@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, Button, StyleSheet, StatusBar } from "react-native";
 import { Dimensions } from "react-native";
 import { TextInput } from "react-native-paper";
 import styled from "styled-components/native";
 import LottieView from "lottie-react-native";
+
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 const Screen = styled.View`
   flex: 1;
@@ -21,10 +23,12 @@ const AnimationWrapper = styled.View`
   position: absolute;
   top: 20px;
   padding: 10px;
-  
 `;
 
 export const AuthScreen = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { onLogin, error, isLoading } = useContext(AuthenticationContext);
   return (
     <Screen>
       <AnimationWrapper>
@@ -41,18 +45,25 @@ export const AuthScreen = ({ navigation }) => {
         <TextInput
           style={styles.inputContainer}
           mode="outlined"
+          value={email}
           label="Mail or Phone Number"
-          placeholder="Type something"
-          right={<TextInput.Affix text="/100" />}
+          textContentType="emailAddress"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          onChangeText={(u) => setEmail(u)}
         />
         <Text>Password</Text>
         <TextInput
           style={styles.inputContainer}
           mode="outlined"
           label="Password"
-          placeholder="Type something"
-          right={<TextInput.Affix text="/100" />}
+          value={password}
+          textContentType="password"
+          secureTextEntry
+          autoCapitalize="none"
+          onChangeText={(p) => setPassword(p)}
         />
+        <Text variant="error">{error}</Text>
         <View
           style={{
             flex: 1,
@@ -68,7 +79,7 @@ export const AuthScreen = ({ navigation }) => {
             />
           </ButtonContainer>
           <ButtonContainer>
-            <Button title="Login" onPress={() => null} />
+            <Button title="Login" onPress={() => onLogin(email, password)} />
           </ButtonContainer>
         </View>
       </View>
@@ -89,7 +100,7 @@ const styles = StyleSheet.create({
     height: "22%",
     alignItems: "center",
     padding: 4,
-    marginTop:100
+    marginTop: 100,
   },
   inputContainer: {
     width: "95%",

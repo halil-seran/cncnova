@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-paper";
 import styled from "styled-components/native";
 import { List } from "react-native-paper";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 const AvatarContainer = styled.View`
   align-items: center;
@@ -17,6 +18,7 @@ const EmailTitle = styled(Text)`
 
 export function ProfileScreen({ navigation }) {
   const [photo, setPhoto] = useState(null);
+  const { onLogout, user } = useContext(AuthenticationContext);
 
   return (
     <>
@@ -61,7 +63,7 @@ export function ProfileScreen({ navigation }) {
           title="Logout"
           description="Sign out of your account"
           left={(props) => <List.Icon {...props} icon="logout" />}
-          onPress={() => null}
+          onPress={onLogout}
           style={styles.listItemContainer}
         />
       </View>

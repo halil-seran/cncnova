@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 import styled from "styled-components/native";
+
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 const Screen = styled.View`
   flex: 1;
@@ -19,6 +21,10 @@ const InputArea = styled.View`
 `;
 
 export const RegisterScreen = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatedPassword, setRepeatedPassword] = useState("");
+  const { onRegister, error } = useContext(AuthenticationContext); // ,isLoading,
   return (
     <Screen>
       <InputArea>
@@ -27,27 +33,39 @@ export const RegisterScreen = ({ navigation }) => {
           style={styles.inputContainer}
           mode="outlined"
           label="Mail or Phone Number"
-          placeholder="Type something"
-          right={<TextInput.Affix text="/100" />}
+          value={email}
+          textContentType="emailAddress"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          onChangeText={(u) => setEmail(u)}
         />
-        <Text>Password</Text>
+        <Text>Password {error} </Text>
         <TextInput
           style={styles.inputContainer}
           mode="outlined"
           label="Password"
-          placeholder="Type something"
-          right={<TextInput.Affix text="/100" />}
+          value={password}
+          textContentType="password"
+          secureTextEntry
+          autoCapitalize="none"
+          onChangeText={(p) => setPassword(p)}
         />
         <Text>Password Again</Text>
         <TextInput
           style={styles.inputContainer}
           mode="outlined"
           label="Password Again"
-          placeholder="Type something"
-          right={<TextInput.Affix text="/100" />}
+          value={repeatedPassword}
+          textContentType="password"
+          secureTextEntry
+          autoCapitalize="none"
+          onChangeText={(p) => setRepeatedPassword(p)}
         />
         <View style={styles.buttonContainer}>
-          <Button title="register" />
+          <Button
+            title="register"
+            onPress={() => onRegister(email, password, repeatedPassword)}
+          />
         </View>
       </InputArea>
     </Screen>
