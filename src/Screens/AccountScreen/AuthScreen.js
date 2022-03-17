@@ -1,29 +1,18 @@
 import React, { useState, useContext } from "react";
-import { View, Text, Button, StyleSheet, StatusBar } from "react-native";
-import { Dimensions } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
-import styled from "styled-components/native";
 import LottieView from "lottie-react-native";
+import {
+  Screen,
+  ButtonText,
+  AnimationWrapper,
+  Card,
+  Title,
+  BottomButtons,
+  Button,
+} from "../ScreenComponents/AuthScreen-component";
 
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
-
-const Screen = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ButtonContainer = styled.View`
-  width: 100px;
-  padding-top: 10px;
-`;
-const AnimationWrapper = styled.View`
-  width: 400px;
-  height: 400px;
-  position: absolute;
-  top: 20px;
-  padding: 10px;
-`;
 
 export const AuthScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -40,8 +29,8 @@ export const AuthScreen = ({ navigation }) => {
           source={require("../../../assets/cncanimation.json")}
         />
       </AnimationWrapper>
-      <View style={styles.container}>
-        <Text>Mail or Phone Number</Text>
+      <Card>
+        <Title>Mail or Phone Number</Title>
         <TextInput
           style={styles.inputContainer}
           mode="outlined"
@@ -52,7 +41,7 @@ export const AuthScreen = ({ navigation }) => {
           autoCapitalize="none"
           onChangeText={(u) => setEmail(u)}
         />
-        <Text>Password</Text>
+        <Title>Password</Title>
         <TextInput
           style={styles.inputContainer}
           mode="outlined"
@@ -64,44 +53,20 @@ export const AuthScreen = ({ navigation }) => {
           onChangeText={(p) => setPassword(p)}
         />
         <Text variant="error">{error}</Text>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            justifyContent: "space-around",
-            width: "100%",
-          }}
-        >
-          <ButtonContainer>
-            <Button
-              title="Register"
-              onPress={() => navigation.navigate("RegisterScreen")}
-            />
-          </ButtonContainer>
-          <ButtonContainer>
-            <Button title="Login" onPress={() => onLogin(email, password)} />
-          </ButtonContainer>
-        </View>
-      </View>
+        <BottomButtons>
+          <Button onPress={() => navigation.navigate("RegisterScreen")}>
+            <ButtonText>REGISTER</ButtonText>
+          </Button>
+          <Button onPress={() => onLogin(email, password)}>
+            <ButtonText>LOGIN</ButtonText>
+          </Button>
+        </BottomButtons>
+      </Card>
     </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  container: {
-    backgroundColor: "#F49D37",
-    borderRadius: 15,
-    width: "80%",
-    height: "22%",
-    alignItems: "center",
-    padding: 4,
-    marginTop: 100,
-  },
   inputContainer: {
     width: "95%",
     height: 45,

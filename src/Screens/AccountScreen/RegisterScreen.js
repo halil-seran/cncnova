@@ -1,24 +1,17 @@
 import React, { useState, useContext } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
-import styled from "styled-components/native";
+import {
+  Screen,
+  Card,
+  Title,
+  RegisterButton,
+  ButtonText,
+  BackButton,
+  BackButtonTitle
+} from "../ScreenComponents/RegisterScreen-component";
 
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
-
-const Screen = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-const InputArea = styled.View`
-  padding-top: 10px;
-  background-color: #f49d37;
-  border-radius: 25px;
-  border-width: 1px;
-  width: 80%;
-  align-items: center;
-  height: 300px;
-`;
 
 export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -27,8 +20,8 @@ export const RegisterScreen = ({ navigation }) => {
   const { onRegister, error } = useContext(AuthenticationContext); // ,isLoading,
   return (
     <Screen>
-      <InputArea>
-        <Text>Mail or Phone Number</Text>
+      <Card>
+        <Title>Mail or Phone Number</Title>
         <TextInput
           style={styles.inputContainer}
           mode="outlined"
@@ -39,7 +32,7 @@ export const RegisterScreen = ({ navigation }) => {
           autoCapitalize="none"
           onChangeText={(u) => setEmail(u)}
         />
-        <Text>Password {error} </Text>
+        <Title>Password {error} </Title>
         <TextInput
           style={styles.inputContainer}
           mode="outlined"
@@ -50,7 +43,7 @@ export const RegisterScreen = ({ navigation }) => {
           autoCapitalize="none"
           onChangeText={(p) => setPassword(p)}
         />
-        <Text>Password Again</Text>
+        <Title>Password Again</Title>
         <TextInput
           style={styles.inputContainer}
           mode="outlined"
@@ -61,13 +54,14 @@ export const RegisterScreen = ({ navigation }) => {
           autoCapitalize="none"
           onChangeText={(p) => setRepeatedPassword(p)}
         />
-        <View style={styles.buttonContainer}>
-          <Button
-            title="register"
-            onPress={() => onRegister(email, password, repeatedPassword)}
-          />
-        </View>
-      </InputArea>
+
+        <RegisterButton onPress={() => onRegister(email, password, repeatedPassword)}>
+          <ButtonText>REGISTER</ButtonText>
+        </RegisterButton>
+      </Card>
+      <BackButton /*mode="contained"*/ onPress={() => navigation.goBack()}>
+        <BackButtonTitle>Back</BackButtonTitle>
+      </BackButton>
     </Screen>
   );
 };
@@ -76,9 +70,5 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: "95%",
     height: 45,
-  },
-  buttonContainer: {
-    margin: 20,
-    width: 200,
   },
 });
