@@ -19,50 +19,52 @@ export const AuthScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const { onLogin, error, isLoading } = useContext(AuthenticationContext);
   return (
-    <Screen>
-      <AnimationWrapper>
-        <LottieView
-          key="animation"
-          autoPlay
-          loop
-          resizeMode="cover"
-          source={require("../../../assets/cncanimation.json")}
-        />
-      </AnimationWrapper>
-      <Card>
-        <Title>Mail or Phone Number</Title>
-        <TextInput
-          style={styles.inputContainer}
-          mode="outlined"
-          value={email}
-          label="Mail or Phone Number"
-          textContentType="emailAddress"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          onChangeText={(u) => setEmail(u)}
-        />
-        <Title>Password</Title>
-        <TextInput
-          style={styles.inputContainer}
-          mode="outlined"
-          label="Password"
-          value={password}
-          textContentType="password"
-          secureTextEntry
-          autoCapitalize="none"
-          onChangeText={(p) => setPassword(p)}
-        />
-        <Text variant="error">{error}</Text>
-        <BottomButtons>
-          <Button onPress={() => navigation.navigate("RegisterScreen")}>
-            <ButtonText>REGISTER</ButtonText>
-          </Button>
-          <Button onPress={() => onLogin(email, password)}>
-            <ButtonText>LOGIN</ButtonText>
-          </Button>
-        </BottomButtons>
-      </Card>
-    </Screen>
+    <>
+      <Screen behavior="padding" keyboardVerticalOffset={-400}>
+        <AnimationWrapper>
+          <LottieView
+            key="animation"
+            autoPlay
+            loop
+            resizeMode="cover"
+            source={require("../../../assets/cncanimation.json")}
+          />
+        </AnimationWrapper>
+        <Card>
+          <Title>Mail or Phone Number</Title>
+          <TextInput
+            style={styles.inputContainer}
+            mode="outlined"
+            value={email}
+            label="Mail or Phone Number"
+            textContentType="emailAddress"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            onChangeText={(u) => setEmail(u)}
+          />
+          <Title>Password</Title>
+          <TextInput
+            style={styles.inputContainer}
+            mode="outlined"
+            label="Password"
+            value={password}
+            textContentType="password"
+            secureTextEntry
+            autoCapitalize="none"
+            onChangeText={(p) => setPassword(p)}
+          />
+          <Text variant="error">{error}</Text>
+          <BottomButtons>
+            <Button onPress={() => navigation.navigate("RegisterScreen")}>
+              <ButtonText>REGISTER</ButtonText>
+            </Button>
+            <Button onPress={() => onLogin(email, password)}>
+              <ButtonText>LOGIN</ButtonText>
+            </Button>
+          </BottomButtons>
+        </Card>
+      </Screen>
+    </>
   );
 };
 

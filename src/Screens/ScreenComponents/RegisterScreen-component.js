@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { Button } from "react-native-paper";
 
-export const Screen = styled.View`
+export const Screen = styled.KeyboardAvoidingView`
   flex: 1;
   justify-content: center;
   align-items: center;
@@ -14,6 +14,7 @@ export const Card = styled.View`
   width: 90%;
   align-items: center;
   height: 300px;
+  margin-top: 70px;
 `;
 export const Title = styled.Text`
   font-weight: bold;

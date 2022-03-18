@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const Screen = styled.View`
+export const Screen = styled.KeyboardAvoidingView`
   flex: 1;
   justify-content: center;
   align-items: center;
@@ -17,7 +17,7 @@ export const Card = styled.View`
   background: #ffb703;
   border-radius: 15px;
   width: 90%;
-  height: 25%;
+  height: 230px;
   align-items: center;
   padding: 4px;
   margin-top: 100px;
@@ -42,6 +42,6 @@ export const Button = styled.Pressable`
 `;
 export const ButtonText = styled.Text`
   font-size: 15px;
-  letter-spacing:1px;
-    color: #f1faee;
+  letter-spacing: 1px;
+  color: #f1faee;
 `;

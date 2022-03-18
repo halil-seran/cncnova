@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   StatusBar,
 } from "react-native";
+import { Screen } from "../ScreenComponents/HomeScreen-component";
 import { Card } from "../../component/UI/Card";
 //import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -34,7 +35,7 @@ const MOCKDATA = [
 ];
 
 const Item = ({ navigation }) => (
-  <View style={{ flex: 1, alignItems: "center" }}>
+  <Screen>
     <Card style={styles.cardContainer}>
       <TouchableOpacity
         style={{
@@ -48,7 +49,7 @@ const Item = ({ navigation }) => (
         <Text>Product</Text>
       </TouchableOpacity>
     </Card>
-  </View>
+  </Screen>
 );
 
 export const HomeScreen = ({ navigation }) => {
@@ -71,7 +72,6 @@ const styles = StyleSheet.create({
     maxWidth: 420,
     minWidth: 300,
     height: 160,
-    maxHeight: 250,
     marginVertical: 10,
   },
   eraseLater: {

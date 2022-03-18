@@ -10,6 +10,13 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import {
+  Screen,
+  ProductArea,
+  ModalArea,
+  ProductImageArea,
+  ImageChangeButton,
+} from "../ScreenComponents/DetailScreen-component";
 
 const MOCKDATA = {
   url1: "https://cdn.pixabay.com/photo/2019/08/11/07/44/laser-4398314_960_720.jpg",
@@ -30,32 +37,32 @@ export const DetailScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.screen}>
-      <View style={{ flex: 9 }}>
-        <View style={{ flexDirection: "row", flex: 0.4 }}>
-          <View style={styles.buttonContainer}>
+    <Screen>
+      <ProductArea>
+        <ProductImageArea>
+          <ImageChangeButton>
             <TouchableOpacity
               onPress={changeImage}
               style={styles.changeImageButton}
             >
               <Text style={{ color: "black", fontSize: 30 }}> ᐸ </Text>
             </TouchableOpacity>
-          </View>
+          </ImageChangeButton>
           <Image
             style={{ flex: 9 }}
             source={{
               uri: `${image}`,
             }}
           />
-          <View style={styles.buttonContainer}>
+          <ImageChangeButton>
             <TouchableOpacity
               onPress={changeImage}
               style={styles.changeImageButton}
             >
               <Text style={{ color: "black", fontSize: 30 }}> ᐳ </Text>
             </TouchableOpacity>
-          </View>
-        </View>
+          </ImageChangeButton>
+        </ProductImageArea>
         <View style={styles.textContainer}>
           <Text>urunun adi</Text>
           <Text>urunun fiyati</Text>
@@ -64,8 +71,8 @@ export const DetailScreen = ({ navigation }) => {
           <Text>urunun Ozellikleri</Text>
           <Text>urunun detaylari</Text>
         </View>
-      </View>
-      <View style={styles.centeredView}>
+      </ProductArea>
+      <ModalArea>
         <Modal
           animationType="slide"
           transparent={true}
@@ -99,8 +106,8 @@ export const DetailScreen = ({ navigation }) => {
             <Text style={styles.textStyle}>Iletisim Bilgileri</Text>
           </Pressable>
         </View>
-      </View>
-    </View>
+      </ModalArea>
+    </Screen>
   );
 };
 
@@ -158,8 +165,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonContainer: {
-    width:30,
-    height:270,
+    width: 30,
+    height: 270,
     backgroundColor: "#d4f9c3",
   },
   textContainer: {

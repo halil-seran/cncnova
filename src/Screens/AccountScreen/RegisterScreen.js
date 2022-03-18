@@ -19,7 +19,7 @@ export const RegisterScreen = ({ navigation }) => {
   const [repeatedPassword, setRepeatedPassword] = useState("");
   const { onRegister, error } = useContext(AuthenticationContext); // ,isLoading,
   return (
-    <Screen>
+    <Screen behavior="padding" keyboardVerticalOffset={-400}>
       <Card>
         <Title>Mail or Phone Number</Title>
         <TextInput
